@@ -5,8 +5,22 @@ class InvalidRomanNumeralError(Exception):
     pass
 
 
-def handler(event, context):
-    print('hello')
+def handler(event, context) -> dict:
+    """
+    Entry point for lambda
+    :param event: dict containing provided parameters
+    :param context: dict
+    :return: dict
+    """
+    roman_number = event.get("romanNumber")
+
+    try:
+        arab_number = roman_to_int(roman_number)
+        return {"Result": arab_number}
+    except InvalidRomanNumeralError as ex:
+        return {"ClientError": str(ex)}
+    except Exception as ex:
+        return {"ServerError": str(ex)}
 
 
 def roman_to_int(roman_number: str) -> int:

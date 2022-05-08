@@ -29,8 +29,8 @@ def main():
     region = "us-east-1"
 
     function_name = f"RomanNumbersConverter-{uuid4()}"
-    function_file = "../lambda/hello.py"
-    function_handler = "handler"
+    function_file = "./hello.py"
+    function_handler = "hello.handler"
     lambda_policy = {
             "Version": "2012-10-17",
             "Statement": {
@@ -57,7 +57,7 @@ def main():
         response = lambda_client.create_function(
             FunctionName=function_name,
             Description="Demo lambda for OGRE",
-            Runtime="python3.9",
+            Runtime="python3.8",
             Role=role.arn,
             Handler=function_handler,
             Code={"ZipFile": deployment_package},
