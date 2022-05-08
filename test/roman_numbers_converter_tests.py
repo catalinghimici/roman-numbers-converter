@@ -56,6 +56,14 @@ class FromRomanBadInput(unittest.TestCase):
             roman_to_int(roman_number.upper())
             self.assertRaises(InvalidRomanNumeralError, roman_to_int, roman_number.lower())
 
+    def test_known_values(self):
+        """
+        Conversion should be successful and return correct result
+        """
+        for roman_number, arab_number in [('DCCC', 800), ('DCCLXXXII', 782), ('MCMXCI', 1991), ('I', 1)]:
+            calculated_arab_number = roman_to_int(roman_number)
+            self.assertEqual(arab_number, calculated_arab_number)
+
 
 if __name__ == '__main__':
     unittest.main()
